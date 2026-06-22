@@ -15,12 +15,15 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { useCartContext } from "@/context/cart-context";
+import { useAuth } from "@/context/auth-context";
+import { AuthModal } from "./AuthModal";
 import {
   AboutModal,
   ComplaintsModal,
   ContactModal,
   PrivacyModal,
 } from "./legal/LegalModals";
+
 
 export function CorporateNavbar() {
   const [about, setAbout] = useState(false);

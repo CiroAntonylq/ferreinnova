@@ -19,12 +19,19 @@ export function CartDrawer() {
   const { items, count, subtotal, igv, total, setQty, remove, clear, drawerOpen, closeDrawer } =
     useCartContext();
   const { checkoutDecrement } = useInventoryContext();
+  const { user } = useAuth();
   const [successOpen, setSuccessOpen] = useState(false);
   const [purchasedTotal, setPurchasedTotal] = useState(0);
   const [purchasedCount, setPurchasedCount] = useState(0);
   const [processing, setProcessing] = useState(false);
 
   const handleCheckout = async () => {
+    if (!user) {
+      toast.warning("Inicia sesión para comprar", {
+        description: "Debes crear una cuenta o iniciar sesión antes de realizar la compra.",
+      });
+      return;
+    }
     if (items.length === 0) {
       toast.error("Tu carrito está vacío");
       return;
@@ -59,6 +66,7 @@ export function CartDrawer() {
       description: "El stock fue actualizado en el inventario.",
     });
   };
+
 
   return (
     <>

@@ -130,6 +130,25 @@ export function CorporateNavbar() {
               <span className="hidden sm:inline">Reclamaciones</span>
             </button>
 
+            <button
+              type="button"
+              onClick={openDrawer}
+              data-testid="btn-open-cart-corp"
+              aria-label="Abrir carrito"
+              className="relative inline-flex items-center gap-1.5 rounded-lg bg-orange-500 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-neutral-950 transition hover:bg-orange-400"
+            >
+              <ShoppingCart className="h-3.5 w-3.5" />
+              Carrito
+              {count > 0 && (
+                <span
+                  data-testid="cart-count-corp"
+                  className="ml-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-neutral-950 px-1 text-[9px] text-white"
+                >
+                  {count}
+                </span>
+              )}
+            </button>
+
             {/* Menú hamburguesa */}
             <div ref={menuRef} className="relative">
               <button
@@ -221,25 +240,6 @@ export function CorporateNavbar() {
                 </button>
               </div>
             </div>
-
-            <button
-              type="button"
-              onClick={openDrawer}
-              data-testid="btn-open-cart-corp"
-              aria-label="Abrir carrito"
-              className="relative inline-flex items-center gap-1.5 rounded-lg bg-orange-500 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-neutral-950 transition hover:bg-orange-400"
-            >
-              <ShoppingCart className="h-3.5 w-3.5" />
-              Carrito
-              {count > 0 && (
-                <span
-                  data-testid="cart-count-corp"
-                  className="ml-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-neutral-950 px-1 text-[9px] text-white"
-                >
-                  {count}
-                </span>
-              )}
-            </button>
           </div>
         </div>
       </header>

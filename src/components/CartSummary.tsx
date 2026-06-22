@@ -75,7 +75,7 @@ export function CartSummary({ items, total, onRemove, onClear }: Props) {
             className="text-2xl font-bold tracking-tight text-foreground"
             data-testid="carrito-total"
           >
-            ${total.toFixed(2)}
+            S/. {total.toFixed(2)}
           </span>
         </div>
 

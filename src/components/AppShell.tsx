@@ -13,6 +13,7 @@ import { CookieBanner } from "./CookieBanner";
 export function AppShell() {
   return (
     <InventoryProvider>
+    <AuthProvider>
     <CartProvider>
       <div className="dark min-h-screen w-full bg-background text-foreground">
         {/* Ambient glow */}
@@ -32,6 +33,8 @@ export function AppShell() {
         <Toaster richColors closeButton position="top-right" />
       </div>
     </CartProvider>
+    </AuthProvider>
     </InventoryProvider>
+
   );
 }

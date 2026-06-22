@@ -14,7 +14,149 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      order_items: {
+        Row: {
+          cantidad: number
+          created_at: string
+          id: string
+          order_id: string
+          precio_unitario: number
+          product_id: string
+        }
+        Insert: {
+          cantidad: number
+          created_at?: string
+          id?: string
+          order_id: string
+          precio_unitario: number
+          product_id: string
+        }
+        Update: {
+          cantidad?: number
+          created_at?: string
+          id?: string
+          order_id?: string
+          precio_unitario?: number
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_email: string | null
+          id: string
+          status: string
+          total: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          customer_email?: string | null
+          id?: string
+          status?: string
+          total?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string | null
+          id?: string
+          status?: string
+          total?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          categoria: string
+          created_at: string
+          id: string
+          imagen: string | null
+          nombre: string
+          precio: number
+          stock_actual: number
+          stock_minimo: number
+          updated_at: string
+        }
+        Insert: {
+          categoria: string
+          created_at?: string
+          id: string
+          imagen?: string | null
+          nombre: string
+          precio?: number
+          stock_actual?: number
+          stock_minimo?: number
+          updated_at?: string
+        }
+        Update: {
+          categoria?: string
+          created_at?: string
+          id?: string
+          imagen?: string | null
+          nombre?: string
+          precio?: number
+          stock_actual?: number
+          stock_minimo?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      purchase_orders: {
+        Row: {
+          cantidad: number
+          created_at: string
+          id: string
+          product_id: string
+          proveedor: string | null
+          status: string
+        }
+        Insert: {
+          cantidad: number
+          created_at?: string
+          id?: string
+          product_id: string
+          proveedor?: string | null
+          status?: string
+        }
+        Update: {
+          cantidad?: number
+          created_at?: string
+          id?: string
+          product_id?: string
+          proveedor?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchase_orders_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

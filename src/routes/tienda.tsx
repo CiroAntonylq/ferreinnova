@@ -15,8 +15,10 @@ import {
 import { useMemo, useRef, useState, type ComponentType } from "react";
 import { toast } from "sonner";
 import { type CategoriaSlug, type Product } from "@/data/products";
+import { downloadCatalogPDF } from "@/lib/catalog-pdf";
 import { useCartContext } from "@/context/cart-context";
 import { useInventoryContext } from "@/context/inventory-context";
+
 
 export const Route = createFileRoute("/tienda")({
   head: () => ({
@@ -87,9 +89,16 @@ function TiendaPage() {
   };
 
   const handleDownloadCatalog = () => {
-    toast.success("Catálogo PDF descargado", {
-      description: "Revisa tu carpeta de descargas (simulado).",
-    });
+    try {
+      downloadCatalogPDF(products);
+      toast.success("Catálogo descargado", {
+        description: "El PDF se guardó en tu carpeta de descargas.",
+      });
+    } catch (err) {
+      toast.error("No se pudo generar el catálogo", {
+        description: err instanceof Error ? err.message : "Error inesperado al crear el PDF.",
+      });
+    }
   };
 
   const handleAdd = (p: Product) => {

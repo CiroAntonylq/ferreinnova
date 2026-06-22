@@ -6,6 +6,9 @@ import { Toaster } from "@/components/ui/sonner";
 import { CartProvider, useCartContext } from "@/context/cart-context";
 import { Sidebar } from "./Sidebar";
 import { CartDrawer } from "./CartDrawer";
+import { CorporateNavbar } from "./CorporateNavbar";
+import { SiteFooter } from "./SiteFooter";
+import { CookieBanner } from "./CookieBanner";
 
 export function AppShell() {
   return (
@@ -21,13 +24,16 @@ export function AppShell() {
         <MobileNav />
 
         <div className="md:pl-[240px]">
+          <CorporateNavbar />
           <TopBar />
           <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-10">
             <Outlet />
           </main>
+          <SiteFooter />
         </div>
 
         <CartDrawer />
+        <CookieBanner />
         <Toaster richColors closeButton position="top-right" />
       </div>
     </CartProvider>

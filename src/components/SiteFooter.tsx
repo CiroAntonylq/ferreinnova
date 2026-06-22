@@ -101,7 +101,7 @@ export function SiteFooter() {
               </a>
             </div>
             <p className="mt-4 text-[10px] text-slate-500">
-              RUC 20XXXXXXXXX · Hecho en Junín, Perú.
+              Junín, Huancayo, Perú.
             </p>
           </div>
         </div>

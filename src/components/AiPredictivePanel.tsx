@@ -30,8 +30,8 @@ export function AiPredictivePanel({ criticos }: Props) {
   };
 
   const recomendaciones = [
-    { nombre: "Cemento Sol", unidades: 27 },
-    { nombre: "Cable Indeco", unidades: 58 },
+    { nombre: "Cemento Sol", unidades: 27, precioUnitario: 28.9 },
+    { nombre: "Cable Indeco", unidades: 58, precioUnitario: 2.8 },
   ];
 
   const handleConfirmar = () => {

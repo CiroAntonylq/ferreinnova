@@ -78,14 +78,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "FerreInnova" },
+      { name: "description", content: "Tu socio estratégico en materiales de construcción y ferretería" },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "FerreInnova" },
+      { property: "og:description", content: "Tu socio estratégico en materiales de construcción y ferretería" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "FerreInnova" },
+      { name: "twitter:description", content: "Tu socio estratégico en materiales de construcción y ferretería" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ac03c287-e21e-44e9-8ba8-1f4cbf7345f3/id-preview-927d3773--c56088b2-e438-4fba-a246-69d2d7d1248e.lovable.app-1782157059941.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ac03c287-e21e-44e9-8ba8-1f4cbf7345f3/id-preview-927d3773--c56088b2-e438-4fba-a246-69d2d7d1248e.lovable.app-1782157059941.png" },
     ],
     links: [
       {

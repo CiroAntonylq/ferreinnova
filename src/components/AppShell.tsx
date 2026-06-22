@@ -30,5 +30,6 @@ export function AppShell() {
         <Toaster richColors closeButton position="top-right" />
       </div>
     </CartProvider>
+    </InventoryProvider>
   );
 }

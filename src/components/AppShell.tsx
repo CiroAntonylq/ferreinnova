@@ -1,5 +1,5 @@
 // Layout principal con sidebar fija, navbar superior con carrito y contenido scrollable.
-import { Link, Outlet } from "@tanstack/react-router";
+import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { LayoutDashboard, Menu, ShoppingCart, Store } from "lucide-react";
 import { useState } from "react";
 import { Toaster } from "@/components/ui/sonner";

@@ -3,10 +3,12 @@ import { Outlet } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { CartProvider } from "@/context/cart-context";
 import { InventoryProvider } from "@/context/inventory-context";
+import { AuthProvider } from "@/context/auth-context";
 import { CartDrawer } from "./CartDrawer";
 import { CorporateNavbar } from "./CorporateNavbar";
 import { SiteFooter } from "./SiteFooter";
 import { CookieBanner } from "./CookieBanner";
+
 
 export function AppShell() {
   return (

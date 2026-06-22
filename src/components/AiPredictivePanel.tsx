@@ -30,8 +30,8 @@ export function AiPredictivePanel({ criticos }: Props) {
   };
 
   const recomendaciones = [
-    { nombre: "Cemento Sol", unidades: 27 },
-    { nombre: "Cable Indeco", unidades: 58 },
+    { nombre: "Cemento Sol", unidades: 27, precioUnitario: 28.9 },
+    { nombre: "Cable Indeco", unidades: 58, precioUnitario: 2.8 },
   ];
 
   const handleConfirmar = () => {
@@ -104,8 +104,9 @@ export function AiPredictivePanel({ criticos }: Props) {
                 Sin alertas críticas. Inventario óptimo.
               </li>
             ) : (
-              top.map((p) => {
+               top.map((p) => {
                 const sugerido = Math.max(p.stockMinimo * 2 - p.stockActual, p.stockMinimo);
+                const total = sugerido * p.precio;
                 return (
                   <li
                     key={p.id}
@@ -117,9 +118,14 @@ export function AiPredictivePanel({ criticos }: Props) {
                         Stock {p.stockActual} · mínimo {p.stockMinimo}
                       </p>
                     </div>
-                    <span className="shrink-0 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-neutral-900">
-                      +{sugerido} uds
-                    </span>
+                    <div className="flex shrink-0 flex-col items-end gap-1">
+                      <span className="rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-neutral-900">
+                        +{sugerido} uds
+                      </span>
+                      <span className="text-[11px] font-semibold text-amber-300">
+                        S/. {total.toFixed(2)}
+                      </span>
+                    </div>
                   </li>
                 );
               })
@@ -164,17 +170,30 @@ export function AiPredictivePanel({ criticos }: Props) {
             </div>
 
             <ul className="space-y-2">
-              {recomendaciones.map((r) => (
-                <li
-                  key={r.nombre}
-                  className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm"
-                >
-                  <span className="font-medium">{r.nombre}</span>
-                  <span className="rounded-full bg-amber-400/90 px-2.5 py-0.5 text-xs font-bold text-neutral-900">
-                    +{r.unidades} uds
-                  </span>
-                </li>
-              ))}
+              {recomendaciones.map((r) => {
+                const total = r.unidades * r.precioUnitario;
+                return (
+                  <li
+                    key={r.nombre}
+                    className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm"
+                  >
+                    <div className="min-w-0">
+                      <span className="font-medium">{r.nombre}</span>
+                      <p className="text-[10px] text-white/50">
+                        S/. {r.precioUnitario.toFixed(2)} x unidad
+                      </p>
+                    </div>
+                    <div className="flex flex-col items-end gap-0.5">
+                      <span className="rounded-full bg-amber-400/90 px-2.5 py-0.5 text-xs font-bold text-neutral-900">
+                        +{r.unidades} uds
+                      </span>
+                      <span className="text-[11px] font-semibold text-amber-300">
+                        S/. {total.toFixed(2)}
+                      </span>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="mt-5 flex justify-end gap-2">

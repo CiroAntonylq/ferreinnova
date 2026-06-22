@@ -19,9 +19,9 @@ export interface Product {
   imagen: string;
 }
 
-/** Color de fondo de la imagen según categoría — estética limpia. */
-const IMG = (label: string, bg = "f1f5f9", fg = "0f172a") =>
-  `https://placehold.co/600x450/${bg}/${fg}?font=roboto&text=${encodeURIComponent(label)}`;
+/** URL de imagen Unsplash para cada categoría — fotografía hiperrealista. */
+const unsplash = (id: string) =>
+  `https://images.unsplash.com/${id}?w=600&h=400&fit=crop&q=80`;
 
 export const MOCK_PRODUCTS: Product[] = [
   {
@@ -32,7 +32,7 @@ export const MOCK_PRODUCTS: Product[] = [
     precio: 8.5,
     stockActual: 45,
     stockMinimo: 20,
-    imagen: IMG("Tubo PVC SAP\n3/4\""),
+    imagen: unsplash("photo-1558354798-3699f781ac6c"),
   },
   {
     id: "FERR-002",
@@ -42,7 +42,7 @@ export const MOCK_PRODUCTS: Product[] = [
     precio: 28.9,
     stockActual: 3,
     stockMinimo: 15,
-    imagen: IMG("Cemento Sol\n42.5 kg", "fef3c7", "92400e"),
+    imagen: unsplash("photo-1773394089934-3e29f2a3d6a9"),
   },
   {
     id: "FERR-003",
@@ -52,7 +52,7 @@ export const MOCK_PRODUCTS: Product[] = [
     precio: 43.2,
     stockActual: 18,
     stockMinimo: 10,
-    imagen: IMG("Fierro Aceros\nArequipa 1/2\"", "e2e8f0", "1e293b"),
+    imagen: unsplash("photo-1763771420551-18bc44399f0c"),
   },
   {
     id: "FERR-004",
@@ -62,7 +62,7 @@ export const MOCK_PRODUCTS: Product[] = [
     precio: 34.0,
     stockActual: 12,
     stockMinimo: 8,
-    imagen: IMG("Tubo PVC SAL\nPavco 4\""),
+    imagen: unsplash("photo-1558354798-3699f781ac6c"),
   },
   {
     id: "FERR-005",
@@ -72,7 +72,7 @@ export const MOCK_PRODUCTS: Product[] = [
     precio: 24.5,
     stockActual: 25,
     stockMinimo: 5,
-    imagen: IMG("Martillo\nTramontina", "fed7aa", "7c2d12"),
+    imagen: unsplash("flagged/photo-1586864388090-d599b2dcc2f8"),
   },
   {
     id: "FERR-006",
@@ -82,7 +82,7 @@ export const MOCK_PRODUCTS: Product[] = [
     precio: 2.8,
     stockActual: 2,
     stockMinimo: 30,
-    imagen: IMG("Cable THW\nIndeco 12 AWG", "fee2e2", "7f1d1d"),
+    imagen: unsplash("photo-1758965364875-e090e5423d2d"),
   },
   {
     id: "FERR-007",
@@ -92,6 +92,6 @@ export const MOCK_PRODUCTS: Product[] = [
     precio: 65.9,
     stockActual: 9,
     stockMinimo: 6,
-    imagen: IMG("Pintura CPP\n1 galón", "ede9fe", "4c1d95"),
+    imagen: unsplash("photo-1691874076923-98ed46666dc3"),
   },
 ];

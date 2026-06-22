@@ -320,7 +320,7 @@ function TiendaPage() {
         ) : (
           <div
             data-testid="catalogo-grid"
-            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {filtered.map((p) => (
               <ProductCardLight key={p.id} product={p} onAdd={handleAdd} />
@@ -359,43 +359,43 @@ function ProductCardLight({
       data-testid={`tarjeta-producto-${product.id}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-orange-300 hover:shadow-xl"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl bg-slate-100">
         <img
           src={product.imagen}
           alt={product.nombre}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-700 shadow-sm">
+        <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-slate-700 shadow-sm">
           {product.categoria}
         </span>
         {product.stockActual <= product.stockMinimo && !agotado && (
-          <span className="absolute right-3 top-3 rounded-full bg-amber-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-md">
+          <span className="absolute right-3 top-3 rounded-full bg-amber-500 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-md">
             Últimas {product.stockActual}
           </span>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <h3 className="line-clamp-2 min-h-[2.5rem] text-sm font-bold leading-snug text-slate-900">
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <h3 className="line-clamp-2 min-h-[2rem] text-xs font-bold leading-snug text-slate-900">
           {product.nombre}
         </h3>
 
         <div className="flex items-end justify-between">
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
+            <p className="text-[9px] font-medium uppercase tracking-wider text-slate-500">
               Precio
             </p>
             <p
               data-testid={`precio-${product.id}`}
-              className="text-2xl font-extrabold tracking-tight text-slate-900"
+              className="text-xl font-extrabold tracking-tight text-slate-900"
             >
-              <span className="text-sm font-semibold text-slate-500">S/. </span>
+              <span className="text-xs font-semibold text-slate-500">S/. </span>
               {product.precio.toFixed(2)}
             </p>
           </div>
           <span
-            className={`text-[10px] font-semibold uppercase tracking-wider ${
+            className={`text-[9px] font-semibold uppercase tracking-wider ${
               agotado ? "text-red-600" : "text-emerald-600"
             }`}
           >
@@ -410,7 +410,7 @@ function ProductCardLight({
               onClick={() => setQty((q) => Math.max(1, q - 1))}
               data-testid={`btn-qty-minus-${product.id}`}
               aria-label="Disminuir"
-              className="grid h-9 w-9 place-items-center text-slate-600 hover:text-slate-900"
+              className="grid h-8 w-8 place-items-center text-slate-600 hover:text-slate-900"
             >
               <Minus className="h-3.5 w-3.5" />
             </button>
@@ -425,7 +425,7 @@ function ProductCardLight({
               onClick={() => setQty((q) => q + 1)}
               data-testid={`btn-qty-plus-${product.id}`}
               aria-label="Aumentar"
-              className="grid h-9 w-9 place-items-center text-slate-600 hover:text-slate-900"
+              className="grid h-8 w-8 place-items-center text-slate-600 hover:text-slate-900"
             >
               <Plus className="h-3.5 w-3.5" />
             </button>
@@ -437,9 +437,9 @@ function ProductCardLight({
               for (let i = 0; i < qty; i++) onAdd(product);
             }}
             data-testid={`btn-add-${sl}`}
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-orange-500 px-3 py-2.5 text-sm font-bold text-white shadow-md shadow-orange-500/30 transition hover:bg-orange-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-orange-500 px-3 py-2 text-xs font-bold text-white shadow-md shadow-orange-500/30 transition hover:bg-orange-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
           >
-            <ShoppingCart className="h-4 w-4" />
+            <ShoppingCart className="h-3.5 w-3.5" />
             {agotado ? "Sin stock" : "Añadir al carrito"}
           </button>
         </div>

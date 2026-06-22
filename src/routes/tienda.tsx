@@ -66,11 +66,12 @@ function TiendaPage() {
   const [filter, setFilter] = useState<CatFilter>("all");
   const [query, setQuery] = useState("");
   const { add, count, openDrawer } = useCartContext();
+  const { products } = useInventoryContext();
   const catalogRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return MOCK_PRODUCTS.filter((p) => {
+    return products.filter((p) => {
       const matchCat = filter === "all" || p.categoriaSlug === filter;
       const matchQ =
         q.length === 0 ||
@@ -78,7 +79,7 @@ function TiendaPage() {
         p.categoria.toLowerCase().includes(q);
       return matchCat && matchQ;
     });
-  }, [filter, query]);
+  }, [filter, query, products]);
 
   const scrollToCatalog = () => {
     catalogRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });

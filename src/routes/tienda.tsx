@@ -89,9 +89,16 @@ function TiendaPage() {
   };
 
   const handleDownloadCatalog = () => {
-    toast.success("Catálogo PDF descargado", {
-      description: "Revisa tu carpeta de descargas (simulado).",
-    });
+    try {
+      downloadCatalogPDF(products);
+      toast.success("Catálogo descargado", {
+        description: "El PDF se guardó en tu carpeta de descargas.",
+      });
+    } catch (err) {
+      toast.error("No se pudo generar el catálogo", {
+        description: err instanceof Error ? err.message : "Error inesperado al crear el PDF.",
+      });
+    }
   };
 
   const handleAdd = (p: Product) => {

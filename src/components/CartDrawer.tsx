@@ -203,8 +203,8 @@ export function CartDrawer() {
 
       <CheckoutSuccessModal
         open={successOpen}
-        total={total}
-        itemsCount={count}
+        total={purchasedTotal}
+        itemsCount={purchasedCount}
         onClose={handleCloseSuccess}
       />
     </>

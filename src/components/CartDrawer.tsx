@@ -10,24 +10,32 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useCartContext } from "@/context/cart-context";
+import { useInventoryContext } from "@/context/inventory-context";
 import { CheckoutSuccessModal } from "./CheckoutSuccessModal";
 
 export function CartDrawer() {
   const { items, count, subtotal, igv, total, setQty, remove, clear, drawerOpen, closeDrawer } =
     useCartContext();
+  const { decreaseStock } = useInventoryContext();
   const [successOpen, setSuccessOpen] = useState(false);
+  const [purchasedTotal, setPurchasedTotal] = useState(0);
+  const [purchasedCount, setPurchasedCount] = useState(0);
 
   const handleCheckout = () => {
     if (items.length === 0) {
       toast.error("Tu carrito está vacío");
       return;
     }
+    // Captura la cantidad exacta por producto y descuenta del inventario global.
+    decreaseStock(items.map((it) => ({ productId: it.productId, cantidad: it.cantidad })));
+    setPurchasedTotal(total);
+    setPurchasedCount(count);
+    clear();
     setSuccessOpen(true);
   };
 
   const handleCloseSuccess = () => {
     setSuccessOpen(false);
-    clear();
     closeDrawer();
     toast.success("¡Pedido confirmado!", {
       description: "El stock fue actualizado en el inventario.",
@@ -195,8 +203,8 @@ export function CartDrawer() {
 
       <CheckoutSuccessModal
         open={successOpen}
-        total={total}
-        itemsCount={count}
+        total={purchasedTotal}
+        itemsCount={purchasedCount}
         onClose={handleCloseSuccess}
       />
     </>

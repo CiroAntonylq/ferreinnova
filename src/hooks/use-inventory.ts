@@ -1,12 +1,7 @@
-// Hook que expone el inventario simulado (futuro reemplazo: Supabase).
-import { useState } from "react";
-import { MOCK_PRODUCTS, type Product } from "@/data/products";
-import { getCriticalProducts } from "@/lib/inventory";
+// Hook que expone el inventario compartido a través del InventoryContext.
+import { useInventoryContext } from "@/context/inventory-context";
 
 export function useInventory() {
-  const [products] = useState<Product[]>(MOCK_PRODUCTS);
-  return {
-    products,
-    criticos: getCriticalProducts(products),
-  };
+  const { products, criticos } = useInventoryContext();
+  return { products, criticos };
 }

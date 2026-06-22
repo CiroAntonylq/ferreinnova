@@ -26,7 +26,7 @@ export function SiteFooter() {
                   <span className="text-sky-300">Innova</span>
                 </p>
                 <p className="text-[9px] uppercase tracking-[0.18em] text-slate-500">
-                  Digital Strategy &amp; Supply
+                  ESTRATEGIA DIGITAL &amp; SUMINISTRO
                 </p>
               </div>
             </div>

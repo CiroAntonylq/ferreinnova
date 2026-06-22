@@ -14,8 +14,9 @@ import {
 } from "lucide-react";
 import { useMemo, useRef, useState, type ComponentType } from "react";
 import { toast } from "sonner";
-import { MOCK_PRODUCTS, type CategoriaSlug, type Product } from "@/data/products";
+import { type CategoriaSlug, type Product } from "@/data/products";
 import { useCartContext } from "@/context/cart-context";
+import { useInventoryContext } from "@/context/inventory-context";
 
 export const Route = createFileRoute("/tienda")({
   head: () => ({

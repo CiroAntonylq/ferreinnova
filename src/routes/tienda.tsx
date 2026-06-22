@@ -15,8 +15,10 @@ import {
 import { useMemo, useRef, useState, type ComponentType } from "react";
 import { toast } from "sonner";
 import { type CategoriaSlug, type Product } from "@/data/products";
+import { downloadCatalogPDF } from "@/lib/catalog-pdf";
 import { useCartContext } from "@/context/cart-context";
 import { useInventoryContext } from "@/context/inventory-context";
+
 
 export const Route = createFileRoute("/tienda")({
   head: () => ({

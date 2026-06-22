@@ -97,7 +97,7 @@ export function CorporateNavbar() {
                 <span className="text-sky-300">Innova</span>
               </p>
               <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Digital Strategy &amp; Supply
+                ESTRATEGIA DIGITAL &amp; SUMINISTRO
               </p>
             </div>
           </button>

@@ -25,7 +25,6 @@ export function AppShell() {
 
         <div className="md:pl-[240px]">
           <CorporateNavbar />
-          <TopBar />
           <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-10">
             <Outlet />
           </main>
@@ -40,32 +39,6 @@ export function AppShell() {
   );
 }
 
-/* Top utility bar — visible en desktop con icono de carrito. */
-function TopBar() {
-  const { count, openDrawer } = useCartContext();
-  return (
-    <header className="sticky top-0 z-20 hidden h-14 items-center justify-end gap-3 border-b border-border bg-card/70 px-6 backdrop-blur-xl md:flex">
-      <button
-        type="button"
-        onClick={openDrawer}
-        data-testid="btn-open-cart"
-        aria-label="Abrir carrito"
-        className="relative inline-flex items-center gap-2 rounded-xl border border-border bg-surface-2/60 px-3 py-2 text-xs font-semibold text-foreground transition hover:bg-accent"
-      >
-        <ShoppingCart className="h-4 w-4 text-primary" />
-        <span>Carrito</span>
-        {count > 0 && (
-          <span
-            data-testid="cart-count-badge"
-            className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-orange-500 px-1.5 text-[10px] font-bold text-white"
-          >
-            {count}
-          </span>
-        )}
-      </button>
-    </header>
-  );
-}
 
 /* Compact top bar for mobile (sidebar is hidden < md). */
 function MobileNav() {

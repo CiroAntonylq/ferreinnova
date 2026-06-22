@@ -1,7 +1,7 @@
 // Navbar corporativo superior — estilo "smartSAGE": logo + nav legal + acciones.
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { BookOpen, MapPin, ShieldCheck, ShoppingCart, Wrench } from "lucide-react";
+import { BookOpen, ShieldCheck, ShoppingCart, Wrench } from "lucide-react";
 import { useCartContext } from "@/context/cart-context";
 import {
   AboutModal,

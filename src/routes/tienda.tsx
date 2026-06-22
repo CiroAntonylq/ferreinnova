@@ -14,8 +14,9 @@ import {
 } from "lucide-react";
 import { useMemo, useRef, useState, type ComponentType } from "react";
 import { toast } from "sonner";
-import { MOCK_PRODUCTS, type CategoriaSlug, type Product } from "@/data/products";
+import { type CategoriaSlug, type Product } from "@/data/products";
 import { useCartContext } from "@/context/cart-context";
+import { useInventoryContext } from "@/context/inventory-context";
 
 export const Route = createFileRoute("/tienda")({
   head: () => ({
@@ -66,11 +67,12 @@ function TiendaPage() {
   const [filter, setFilter] = useState<CatFilter>("all");
   const [query, setQuery] = useState("");
   const { add, count, openDrawer } = useCartContext();
+  const { products } = useInventoryContext();
   const catalogRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return MOCK_PRODUCTS.filter((p) => {
+    return products.filter((p) => {
       const matchCat = filter === "all" || p.categoriaSlug === filter;
       const matchQ =
         q.length === 0 ||
@@ -78,7 +80,7 @@ function TiendaPage() {
         p.categoria.toLowerCase().includes(q);
       return matchCat && matchQ;
     });
-  }, [filter, query]);
+  }, [filter, query, products]);
 
   const scrollToCatalog = () => {
     catalogRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });

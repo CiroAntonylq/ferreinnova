@@ -9,9 +9,11 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { useAuth } from "@/context/auth-context";
 import { useCartContext } from "@/context/cart-context";
 import { useInventoryContext } from "@/context/inventory-context";
 import { CheckoutSuccessModal } from "./CheckoutSuccessModal";
+
 
 export function CartDrawer() {
   const { items, count, subtotal, igv, total, setQty, remove, clear, drawerOpen, closeDrawer } =

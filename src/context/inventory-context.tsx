@@ -113,8 +113,8 @@ export function InventoryProvider({ children }: { children: ReactNode }) {
   );
 
   const value = useMemo<InventoryContextValue>(
-    () => ({ products, criticos: getCriticalProducts(products), checkoutDecrement }),
-    [products, checkoutDecrement],
+    () => ({ products, criticos: getCriticalProducts(products), checkoutDecrement, loading, refresh }),
+    [products, checkoutDecrement, loading, refresh],
   );
 
   return <InventoryContext.Provider value={value}>{children}</InventoryContext.Provider>;

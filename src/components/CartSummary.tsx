@@ -51,7 +51,7 @@ export function CartSummary({ items, total, onRemove, onClear }: Props) {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xs font-medium">{it.nombre}</p>
                 <p className="text-[11px] text-muted-foreground">
-                  {it.cantidad} × ${it.precio.toFixed(2)}
+                  {it.cantidad} × S/. {it.precio.toFixed(2)}
                 </p>
               </div>
               <button
@@ -75,7 +75,7 @@ export function CartSummary({ items, total, onRemove, onClear }: Props) {
             className="text-2xl font-bold tracking-tight text-foreground"
             data-testid="carrito-total"
           >
-            ${total.toFixed(2)}
+            S/. {total.toFixed(2)}
           </span>
         </div>
 

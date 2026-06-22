@@ -16,20 +16,36 @@ import { CheckoutSuccessModal } from "./CheckoutSuccessModal";
 export function CartDrawer() {
   const { items, count, subtotal, igv, total, setQty, remove, clear, drawerOpen, closeDrawer } =
     useCartContext();
-  const { decreaseStock } = useInventoryContext();
+  const { checkoutDecrement } = useInventoryContext();
   const [successOpen, setSuccessOpen] = useState(false);
   const [purchasedTotal, setPurchasedTotal] = useState(0);
   const [purchasedCount, setPurchasedCount] = useState(0);
+  const [processing, setProcessing] = useState(false);
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (items.length === 0) {
       toast.error("Tu carrito está vacío");
       return;
     }
-    // Captura la cantidad exacta por producto y descuenta del inventario global.
-    decreaseStock(items.map((it) => ({ productId: it.productId, cantidad: it.cantidad })));
-    setPurchasedTotal(total);
-    setPurchasedCount(count);
+    if (processing) return;
+    setProcessing(true);
+    const snapshotTotal = total;
+    const snapshotCount = count;
+    const payload = items.map((it) => ({ productId: it.productId, cantidad: it.cantidad }));
+
+    const result = await checkoutDecrement(payload);
+    setProcessing(false);
+
+    if (!result.ok) {
+      // Rollback: se restauró el stock local; el carrito permanece intacto.
+      toast.error("No se pudo procesar la compra", {
+        description: `PostgreSQL rechazó la operación: ${result.error}. Stock revertido.`,
+      });
+      return;
+    }
+
+    setPurchasedTotal(snapshotTotal);
+    setPurchasedCount(snapshotCount);
     clear();
     setSuccessOpen(true);
   };

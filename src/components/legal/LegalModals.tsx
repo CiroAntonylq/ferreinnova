@@ -27,7 +27,7 @@ export function AboutModal({ open, onOpenChange }: ModalProps) {
         </DialogHeader>
         <div className="space-y-3 text-sm text-muted-foreground">
           <p>
-            <strong className="text-foreground">FerreInnova</strong> nace en Huancayo con la misión
+            <strong className="text-foreground">FerreInnova</strong> nace en Junín con la misión
             de modernizar el abastecimiento ferretero del centro del país, integrando inteligencia
             predictiva de inventario con una experiencia de compra digital de alto nivel.
           </p>

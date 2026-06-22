@@ -119,7 +119,7 @@ function TiendaPage() {
         <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.3fr_1fr] lg:py-24">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-orange-300 backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5" /> Distribuidor autorizado · Lima · Perú
+              <Sparkles className="h-3.5 w-3.5" /> DISTRIBUIDOR AUTORIZADO - PERÚ
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
               Tu socio estratégico en{" "}
@@ -151,15 +151,15 @@ function TiendaPage() {
             <dl className="mt-10 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-6 text-sm">
               <div>
                 <dt className="text-[11px] uppercase tracking-widest text-slate-400">Productos</dt>
-                <dd className="mt-1 text-2xl font-bold text-white">+1.2k</dd>
+                <dd className="mt-1 text-2xl font-bold text-white">+500</dd>
               </div>
               <div>
                 <dt className="text-[11px] uppercase tracking-widest text-slate-400">Marcas</dt>
                 <dd className="mt-1 text-2xl font-bold text-white">35</dd>
               </div>
               <div>
-                <dt className="text-[11px] uppercase tracking-widest text-slate-400">Obras 2025</dt>
-                <dd className="mt-1 text-2xl font-bold text-white">820+</dd>
+                <dt className="text-[11px] uppercase tracking-widest text-slate-400">OBRAS 2026</dt>
+                <dd className="mt-1 text-2xl font-bold text-white">320+</dd>
               </div>
             </dl>
           </div>

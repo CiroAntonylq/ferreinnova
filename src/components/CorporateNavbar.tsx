@@ -89,16 +89,7 @@ export function CorporateNavbar() {
 
           {/* Right actions */}
           <div className="order-2 flex items-center gap-2 lg:order-3">
-          <button
-            type="button"
-            onClick={() => setComplaints(true)}
-            data-testid="btn-complaints"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-orange-500/40 bg-orange-500/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-orange-300 transition hover:bg-orange-500/20"
-          >
-            <BookOpen className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Reclamaciones</span>
-          </button>
-          <button
+            <button
               type="button"
               onClick={() => setComplaints(true)}
               data-testid="btn-complaints"

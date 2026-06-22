@@ -131,8 +131,6 @@ export function CorporateNavbar() {
         {/* Trust bar */}
         <div className="border-t border-border bg-[#0a101c]">
           <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-slate-500 sm:justify-start sm:px-6 lg:px-10">
-            <ShieldCheck className="h-3 w-3 text-emerald-400" />
-            Sitio protegido — Cumple Ley N° 29733 (Protección de Datos · Perú)
           </div>
         </div>
       </header>

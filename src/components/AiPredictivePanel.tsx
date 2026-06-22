@@ -104,8 +104,9 @@ export function AiPredictivePanel({ criticos }: Props) {
                 Sin alertas críticas. Inventario óptimo.
               </li>
             ) : (
-              top.map((p) => {
+               top.map((p) => {
                 const sugerido = Math.max(p.stockMinimo * 2 - p.stockActual, p.stockMinimo);
+                const total = sugerido * p.precio;
                 return (
                   <li
                     key={p.id}
@@ -117,9 +118,14 @@ export function AiPredictivePanel({ criticos }: Props) {
                         Stock {p.stockActual} · mínimo {p.stockMinimo}
                       </p>
                     </div>
-                    <span className="shrink-0 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-neutral-900">
-                      +{sugerido} uds
-                    </span>
+                    <div className="flex shrink-0 flex-col items-end gap-1">
+                      <span className="rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-neutral-900">
+                        +{sugerido} uds
+                      </span>
+                      <span className="text-[11px] font-semibold text-amber-300">
+                        S/. {total.toFixed(2)}
+                      </span>
+                    </div>
                   </li>
                 );
               })

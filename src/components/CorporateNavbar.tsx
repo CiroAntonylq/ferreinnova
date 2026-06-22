@@ -263,6 +263,8 @@ export function CorporateNavbar() {
       <PrivacyModal open={privacy} onOpenChange={setPrivacy} />
       <ContactModal open={contact} onOpenChange={setContact} />
       <ComplaintsModal open={complaints} onOpenChange={setComplaints} />
+      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
+
     </>
   );
 }

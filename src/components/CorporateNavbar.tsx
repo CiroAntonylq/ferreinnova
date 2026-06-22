@@ -6,10 +6,12 @@ import {
   Info,
   LayoutDashboard,
   LogIn,
+  LogOut,
   Menu,
   ShieldCheck,
   ShoppingCart,
   Store,
+  User,
   Wrench,
   X,
 } from "lucide-react";
@@ -35,7 +37,7 @@ export function CorporateNavbar() {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const { count, openDrawer } = useCartContext();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
 
   // Cierra el menú al hacer click fuera o con Escape.
@@ -80,6 +82,13 @@ export function CorporateNavbar() {
   const handleLogin = () => {
     close();
     setAuthOpen(true);
+  };
+
+  const handleLogout = () => {
+    close();
+    logout();
+    toast.success("Sesión cerrada correctamente.");
+    setTimeout(() => navigate({ to: "/tienda" }), 300);
   };
 
 
@@ -199,14 +208,31 @@ export function CorporateNavbar() {
                 >
                   <Store className="h-4 w-4 text-orange-400" /> Tienda
                 </button>
-                <button
-                  type="button"
-                  onClick={handleLogin}
-                  data-testid="link-nav-login"
-                  className={menuItem}
-                >
-                  <LogIn className="h-4 w-4 text-sky-400" /> Iniciar sesión
-                </button>
+                {user ? (
+                  <>
+                    <div className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-300">
+                      <User className="h-4 w-4 text-orange-400" />
+                      <span className="truncate">{user.email}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      data-testid="link-nav-logout"
+                      className={menuItem}
+                    >
+                      <LogOut className="h-4 w-4 text-red-400" /> Cerrar sesión
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleLogin}
+                    data-testid="link-nav-login"
+                    className={menuItem}
+                  >
+                    <LogIn className="h-4 w-4 text-sky-400" /> Iniciar sesión
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={handleAdmin}

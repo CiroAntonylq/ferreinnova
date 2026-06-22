@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { useCartContext } from "@/context/cart-context";
+import { useAuth } from "@/context/auth-context";
+import { AuthModal } from "./AuthModal";
 import {
   AboutModal,
   ComplaintsModal,
@@ -22,15 +24,19 @@ import {
   PrivacyModal,
 } from "./legal/LegalModals";
 
+
 export function CorporateNavbar() {
   const [about, setAbout] = useState(false);
   const [privacy, setPrivacy] = useState(false);
   const [contact, setContact] = useState(false);
   const [complaints, setComplaints] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const { count, openDrawer } = useCartContext();
+  const { user } = useAuth();
+
 
   // Cierra el menú al hacer click fuera o con Escape.
   useEffect(() => {
@@ -55,18 +61,27 @@ export function CorporateNavbar() {
 
   const handleAdmin = () => {
     close();
-    toast.info("Validando credenciales del personal…", {
-      description: "Redirigiendo al Panel Predictivo de Inventario.",
-    });
-    setTimeout(() => navigate({ to: "/admin" }), 600);
+    if (user?.role === "admin") {
+      toast.success("Acceso administrativo verificado", {
+        description: "Redirigiendo al Panel Predictivo de Inventario.",
+      });
+      setTimeout(() => navigate({ to: "/admin" }), 300);
+      return;
+    }
+    if (user?.role === "client") {
+      toast.error("Acceso Denegado: Se requieren credenciales de Administrador.");
+      return;
+    }
+    // Sin sesión → abrir login
+    toast.info("Inicia sesión como administrador para continuar.");
+    setAuthOpen(true);
   };
 
   const handleLogin = () => {
     close();
-    toast.message("Inicio de sesión", {
-      description: "Módulo de autenticación en preparación.",
-    });
+    setAuthOpen(true);
   };
+
 
   const navItem =
     "text-[11px] font-bold uppercase tracking-wider text-slate-200 transition hover:text-orange-400";
@@ -248,6 +263,8 @@ export function CorporateNavbar() {
       <PrivacyModal open={privacy} onOpenChange={setPrivacy} />
       <ContactModal open={contact} onOpenChange={setContact} />
       <ComplaintsModal open={complaints} onOpenChange={setComplaints} />
+      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
+
     </>
   );
 }

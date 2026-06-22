@@ -199,9 +199,9 @@ export function CartDrawer() {
               onClick={handleCheckout}
               data-testid="btn-checkout"
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-orange-500/30 transition hover:bg-orange-600 active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
-              disabled={items.length === 0}
+              disabled={items.length === 0 || processing}
             >
-              Finalizar Compra
+              {processing ? "Procesando en PostgreSQL..." : "Finalizar Compra"}
             </button>
             {items.length > 0 && (
               <button

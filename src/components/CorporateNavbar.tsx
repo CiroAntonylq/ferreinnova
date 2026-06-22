@@ -61,18 +61,27 @@ export function CorporateNavbar() {
 
   const handleAdmin = () => {
     close();
-    toast.info("Validando credenciales del personal…", {
-      description: "Redirigiendo al Panel Predictivo de Inventario.",
-    });
-    setTimeout(() => navigate({ to: "/admin" }), 600);
+    if (user?.role === "admin") {
+      toast.success("Acceso administrativo verificado", {
+        description: "Redirigiendo al Panel Predictivo de Inventario.",
+      });
+      setTimeout(() => navigate({ to: "/admin" }), 300);
+      return;
+    }
+    if (user?.role === "client") {
+      toast.error("Acceso Denegado: Se requieren credenciales de Administrador.");
+      return;
+    }
+    // Sin sesión → abrir login
+    toast.info("Inicia sesión como administrador para continuar.");
+    setAuthOpen(true);
   };
 
   const handleLogin = () => {
     close();
-    toast.message("Inicio de sesión", {
-      description: "Módulo de autenticación en preparación.",
-    });
+    setAuthOpen(true);
   };
+
 
   const navItem =
     "text-[11px] font-bold uppercase tracking-wider text-slate-200 transition hover:text-orange-400";

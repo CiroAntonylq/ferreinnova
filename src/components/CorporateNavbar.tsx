@@ -31,9 +31,12 @@ export function CorporateNavbar() {
   const [contact, setContact] = useState(false);
   const [complaints, setComplaints] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const { count, openDrawer } = useCartContext();
+  const { user } = useAuth();
+
 
   // Cierra el menú al hacer click fuera o con Escape.
   useEffect(() => {

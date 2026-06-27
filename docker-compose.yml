@@ -1,0 +1,16 @@
+# docker-compose.yml — referencia de orquestación
+# Define los servicios principales (frontend + backend) para entornos locales.
+# La app se sigue ejecutando con `bun run dev` (Vite + TanStack Start).
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ferreinnova-app
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: unless-stopped

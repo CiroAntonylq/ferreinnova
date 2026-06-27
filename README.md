@@ -5,30 +5,29 @@ Plataforma e-commerce + panel administrativo para ferretería y materiales de co
 ## Estructura del proyecto
 
 ```
-├── backend/          # Lógica de servidor (referencia — el código vive en src/ y supabase/)
-├── frontend/         # Aplicación cliente (referencia — el código vive en src/)
-├── database/         # Esquemas y migraciones (referencia — el código vive en supabase/migrations)
-├── docker/           # Configuraciones de contenedores
-├── cypress/          # Pruebas e2e
-├── docs/             # Documentación técnica y de negocio
-├── scripts/          # Scripts de automatización
-├── .github/          # Workflows de CI/CD
-├── docker-compose.yml
-├── docker-compose.override.yml
-├── .env.example
-├── .gitignore
+├── frontend/         → src/, public/, configs de Vite/TS (symlinks a la raíz)
+├── backend/          → supabase/ (symlink) — auth, RPC, edge functions
+├── database/         → migrations/ (symlink a supabase/migrations)
+├── docker/           → Dockerfile + docker-compose.yml + override
+├── cypress/          → pruebas e2e
+├── docs/             → documentación técnica y de negocio
+├── scripts/          → scripts de automatización
+├── .github/          → workflows de CI/CD
+├── src/              → código React (fuente real, requerida en raíz)
+├── supabase/         → migraciones + config (fuente real, requerida en raíz)
+├── .env / .env.example
 └── package.json
 ```
 
-> ⚠️ Las carpetas `backend/`, `frontend/` y `database/` son **scaffolding organizativo**.
-> El código real continúa en `src/` (TanStack Start + Vite) y `supabase/` para no romper
-> el build ni la configuración de paths. Reubicar físicamente requeriría reconfigurar
-> Vite, TanStack Router, tsconfig y Docker.
+> Las carpetas `frontend/`, `backend/` y `database/` exponen el código vía
+> **symlinks** a `src/` y `supabase/`, que deben permanecer en la raíz porque
+> Lovable Cloud, Vite y la CLI de Supabase los buscan ahí. Editar un archivo
+> desde cualquiera de las dos rutas modifica el mismo fichero subyacente.
 
 ## Stack
 
 - **Frontend:** React 19 + TanStack Start + Tailwind CSS v4
-- **Backend:** Lovable Cloud (Supabase) — Auth, DB (PostgreSQL + RLS), Storage
+- **Backend:** Lovable Cloud (Supabase) — Auth, PostgreSQL + RLS, Storage
 - **Build:** Vite 7 + Bun
 - **Tests:** Cypress + Vitest
 
@@ -36,7 +35,11 @@ Plataforma e-commerce + panel administrativo para ferretería y materiales de co
 
 ```bash
 bun install
-bun run dev
+bun run dev          # http://localhost:8080
 ```
 
-La app queda disponible en `http://localhost:8080`.
+## Docker
+
+```bash
+docker compose -f docker/docker-compose.yml up --build
+```
